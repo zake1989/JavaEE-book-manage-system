@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Customer Preference</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../masterpage.xhtml">
+            <ui:define name="header">
+                <ui:include src="usernav.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <div id="maincontent">
+                    <h1>Marked Book</h1>
+                    <ui:repeat value="#{customerController.markedBooks}" var="book" varStatus="status">
+                        <div class="imagecontent">
+                            <div class="image">
+                                <img src="#{book.imageUrl}"></img>
+                            </div>
+                            <div class="titlecon">
+                                #{book.title}   #{book.author}
+                            </div>
+                            <div class="description">
+                                #{book.description}<br/>
+                                <h:form>
+                                    <h:commandButton action="#{bookController.viewBook(book)}" value="Loan A Copy" />
+                                    <br/>
+                                    <h:commandButton action="#{customerController.unmarkBook(book)}" value="Unmark Book" />
+                                    <h:commandButton action="#{commentController.readBook(book)}" value="Comment Book"/>
+                                </h:form>
+                            </div>
+                        </div>
+                        <hr/>
+                    </ui:repeat>
+                    <hr/>
+                    <h1>Unmarked Book</h1>
+                    <ui:repeat value="#{customerController.normalBooks}" var="book" varStatus="status">
+                        <div class="imagecontent">
+                            <div class="image">
+                                <img src="#{book.imageUrl}"></img>
+                            </div>
+                            <div class="titlecon">
+                                #{book.title}   #{book.author}
+                            </div>
+                            <div class="description">
+                                #{book.description}<br/>
+                                <h:form>
+                                    <h:commandButton action="#{bookController.viewBook(book)}" value="Loan A Copy" />
+                                    <br/>
+                                    <h:commandButton action="#{customerController.markBook(book)}" value="Mark Book" />
+                                    <h:commandButton action="#{commentController.readBook(book)}" value="Comment Book"/>
+                                </h:form>
+                            </div>
+                        </div>
+                        <hr/>
+                    </ui:repeat>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

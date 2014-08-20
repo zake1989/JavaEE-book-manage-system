@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>View Comment</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../masterpage.xhtml">
+            <ui:define name="header">
+                <ui:include src="adminnav.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <div id="maincontent">
+                    <h:form>
+                        <h:dataTable value="#{commentController.book.booksComment}" var="comment">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="customer"/>
+                                </f:facet>
+                                <h:outputText value="#{comment.customerComment.username}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Comment Book"/>
+                                </f:facet>
+                                <h:outputText value="#{comment.commentBook.title}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Comment Content"/>
+                                </f:facet>
+                                <h:outputText value="#{comment.comment}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

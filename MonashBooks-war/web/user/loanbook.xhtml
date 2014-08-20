@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Book Detail</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../masterpage.xhtml">
+            <ui:define name="header">
+                <ui:include src="usernav.xhtml" />
+            </ui:define>
+            <ui:define name="content">
+                <div id="maincontent">
+                    <h:form>
+                        <h1><h:outputText value="Create/Edit Book"/></h1>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Title:" for="title" />
+                            <h:outputLabel value="#{bookController.book.title}" for="Title" />
+                            <h:outputLabel value="Author:" for="author" />
+                            <h:outputLabel id="author" value="#{bookController.book.author}"
+                                         title="author" />
+                            <h:outputLabel value="Description:" for="description" />
+                            <h:outputLabel id="description" value="#{bookController.book.description}"
+                                         title="description" />
+                            <h:outputLabel value="ISBN:" for="ISBN" />
+                            <h:outputLabel id="ISBN" value="#{bookController.book.ISBN}"
+                                         title="ISBN" />
+                            <h:outputLabel value="detail" for="detail" />
+                            <h:outputLabel id="detail" value="#{bookController.book.publisher}"
+                                         title="detail" />
+                            <h:outputLabel value="version" for="version" />
+                            <h:outputLabel id="version" value="#{bookController.book.version}"
+                                         title="version" />
+                            <h:outputLabel value="Category:" for="category" />
+                            <h:outputLabel value="#{bookController.book.category}" for="category" />
+                        </h:panelGrid>
+                        <h:commandButton id="back" value="Back" action="index"/>
+
+                        <h1><h:outputText value="Displaying BookCopys"/></h1>
+                        <h:dataTable value="#{bookCopyController.getBookCopysForOneBook(bookController.book.id)}" var="bookcopy">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Copy ID"/>
+                                </f:facet>
+                                <h:outputText value="#{bookcopy.id}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Copy ID"/>
+                                </f:facet>
+                                <h:outputText value="#{bookcopy.availability}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Copy ID"/>
+                                </f:facet>
+                                <h:outputText value="#{bookcopy.bookCopy.title}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Actions"/>
+                                </f:facet>
+                                <h:commandButton action="#{loanController.create(bookcopy.id)}" value="Loan this Book" />
+                            </h:column>
+                        </h:dataTable>
+                        <h:commandButton action="index" value="Back" />
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

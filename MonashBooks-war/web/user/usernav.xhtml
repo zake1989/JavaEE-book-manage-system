@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>User</title>
+    </h:head>
+    <h:body>
+        <ui:composition>
+            <div id="navbar">
+                <ul>
+                    <li><b>Welcome : </b>#{customerController.currentUsername}</li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="index" >
+                                Home
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="returnbook" >
+                                Return Book
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="#{customerController.divideBooks()}" >
+                                Manage Preference
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:commandLink action="#{indexController.logOut()}" >
+                                Logout
+                            </h:commandLink>
+                        </h:form>
+                    </li>
+                    <li>
+                        <h:form>
+                            <h:inputText id="searchBoxInput" value="#{searchController.keyWords}"/>
+                            <h:commandButton id="submit" value="Search" 
+                                             action="#{searchController.searchBook()}">
+                            </h:commandButton>
+                        </h:form>
+                    </li>
+                </ul>
+            </div>
+        </ui:composition>
+    </h:body>
+</html>
+
